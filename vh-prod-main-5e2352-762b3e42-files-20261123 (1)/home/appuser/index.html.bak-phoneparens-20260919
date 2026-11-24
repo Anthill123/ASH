@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASH Financial</title>
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#C8102E" />
+    <meta name="description" content="ASH Financial provides expert financial guidance and financial literacy coaching to help individuals and families build wealth and achieve lasting financial freedom." />
+    <link rel="canonical" href="https://vh-prod-main-5e2352-762b3e42.livemy.site/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ASH Financial" />
+    <meta property="og:title" content="ASH Financial — Building Wealth. Creating Legacy." />
+    <meta property="og:description" content="Expert financial guidance to help individuals and families achieve lasting financial freedom." />
+    <meta property="og:url" content="https://vh-prod-main-5e2352-762b3e42.livemy.site/" />
+    <meta property="og:image" content="https://vh-prod-main-5e2352-762b3e42.livemy.site/icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#C8102E',
+              brandDark: '#a00d24',
+              dark: '#0a0a0a',
+              light: '#f5f5f5',
+              muted: '#777777',
+            },
+            fontFamily: {
+              heading: ['Montserrat', 'sans-serif'],
+              body: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --brand: #C8102E;
+        --brand-dark: #a00d24;
+        --dark: #0a0a0a;
+        --light: #f5f5f5;
+        --muted: #777777;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      /* NAV */
+      .nav-wrap {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        background: #fff;
+        transition: box-shadow 0.3s ease;
+      }
+      .nav-wrap.scrolled {
+        box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      }
+      .nav-link {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: #444;
+        text-decoration: none;
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+      .nav-link:hover { color: var(--brand); }
+
+      /* LOGO */
+      .logo-bar-top {
+        width: 40px; height: 3px;
+        background: #0a0a0a;
+        margin-bottom: 2px;
+      }
+      .logo-text-ash {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 4px;
+        color: #0a0a0a;
+        line-height: 1;
+      }
+      .logo-red-bars {
+        display: flex;
+        justify-content: space-between;
+        width: 40px;
+        margin-top: 1px;
+      }
+      .logo-red-bar {
+        width: 14px; height: 2px;
+        background: var(--brand);
+      }
+      .logo-financial {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        color: #0a0a0a;
+        margin-top: 1px;
+      }
+
+      /* HERO */
+      .hero-section {
+        min-height: 100vh;
+        background-color: #0a0a0a;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 35px,
+          rgba(255,255,255,0.015) 35px,
+          rgba(255,255,255,0.015) 36px
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-content {
+        animation: heroFadeIn 1.2s ease forwards;
+        opacity: 0;
+      }
+      @keyframes heroFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translateY(20px); }
+      }
+
+      .btn-primary {
+        display: inline-block;
+        background: var(--brand);
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 15px 34px;
+        border: 2px solid var(--brand);
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        text-decoration: none;
+      }
+      .btn-primary:hover {
+        background: var(--brand-dark);
+        border-color: var(--brand-dark);
+      }
+
+      /* BTN-RED */
+      .btn-red {
+        background: #C8102E;
+        color: #fff;
+        padding: 14px 34px;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-red:hover {
+        background: #a00d24;
+      }
+
+      /* BTN-OUTLINE */
+      .btn-outline {
+        background: transparent;
+        color: #fff;
+        padding: 14px 34px;
+        border: 2px solid #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        background: #fff;
+        color: #0a0a0a;
+      }
+
+      /* BTN-WHITE */
+      .btn-white {
+        background: transparent;
+        color: #fff;
+        padding: 14px 40px;
+        border: 2px solid #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-white:hover {
+        background: #fff;
+        color: #C8102E;
+      }
+
+      /* SECTION FADE-IN */
+      .fade-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .fade-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* SERVICE CARD */
+      .service-card {
+        background: #fff;
+        border-top: 3px solid var(--brand);
+        padding: 28px;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+      }
+
+      /* BOOK COVER */
+      .book-cover {
+        width: 180px;
+        height: 270px;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 18px;
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      /* MOBILE MENU */
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        padding: 24px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu .nav-link {
+        font-size: 18px;
+        padding: 16px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      /* CTA */
+      .btn-outline-white {
+        display: inline-block;
+        background: transparent;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 15px 40px;
+        border: 2px solid #fff;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        text-decoration: none;
+      }
+      .btn-outline-white:hover {
+        background: #fff;
+        color: var(--brand);
+      }
+
+      /* VALUE CARD */
+      .value-card {
+        padding: 20px 0;
+      }
+      .value-card-bar {
+        width: 30px; height: 3px;
+        background: var(--brand);
+        margin-bottom: 12px;
+      }
+
+      /* FOOTER LINK */
+      .footer-link {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.2s;
+        display: block;
+        padding: 3px 0;
+        cursor: pointer;
+      }
+      .footer-link:hover { color: var(--brand); }
+
+      /* SECTION LABELS */
+      .section-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: 14px;
+      }
+
+      /* CONTACT SECTION */
+      #contact { background: #C8102E; padding: 80px 60px; }
+      .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+      .contact-left h2 { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; color: #fff; margin: 14px 0 16px; line-height: 1.2; }
+      .contact-left p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 30px; }
+      .contact-info { display: flex; flex-direction: column; gap: 14px; }
+      .contact-info-item { display: flex; flex-direction: column; }
+      .contact-info-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 3px; }
+      .contact-info-item a, .contact-info-item span { font-size: 14px; color: #fff; text-decoration: none; }
+      .contact-info-item a:hover { text-decoration: underline; }
+      .contact-right { background: #fff; padding: 40px; border-radius: 2px; }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .form-group { display: flex; flex-direction: column; margin-bottom: 18px; }
+      .form-group label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #333; margin-bottom: 7px; font-family: 'Montserrat', sans-serif; }
+      .form-group input, .form-group select, .form-group textarea { border: 1px solid #ddd; padding: 11px 14px; font-size: 14px; font-family: 'Inter', sans-serif; color: #111; outline: none; border-radius: 2px; transition: border-color 0.2s; background: #fafafa; }
+      .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #C8102E; background: #fff; }
+      .form-group textarea { resize: vertical; }
+      .form-submit { width: 100%; background: #C8102E; color: #fff; border: none; padding: 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+      .form-submit:hover { background: #a00d24; }
+
+      /* COMING SOON BADGE */
+      .badge-coming-soon {
+        display: inline-block;
+        background: transparent;
+        border: 2px solid #c9a84c;
+        color: #c9a84c;
+        padding: 10px 24px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 10px;
+      }
+
+      /* BOOKS GRID */
+      .books-grid {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+        justify-items: center;
+      }
+      @media (max-width: 768px) {
+        .books-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 900px) { .contact-inner { grid-template-columns: 1fr; gap: 40px; } .form-row { grid-template-columns: 1fr; } }
+      @media (max-width: 600px) { #contact { padding: 60px 24px; } .contact-right { padding: 24px; } }
+    </style>
+</head>
+<body data-id="0" class="font-body">
+    <app-icon data-id="1" hidden data-icon="trending-up" data-palette="Red"></app-icon>
+    <app-disclaimer data-id="2" intent="financial"></app-disclaimer>
+
+    <!-- NAVIGATION -->
+    <header data-id="3" class="nav-wrap" id="navbar-a1b2">
+        <div data-id="4" class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between" style="height:72px;">
+            <!-- Logo -->
+            <a data-id="5" href="#home" class="flex-shrink-0 cursor-pointer" id="logo-link-c3d4" style="text-decoration:none;">
+                <div data-id="6" class="logo-bar-top"></div>
+                <div data-id="7" class="logo-text-ash">ASH</div>
+                <div data-id="8" class="logo-red-bars">
+                    <div data-id="9" class="logo-red-bar"></div>
+                    <div data-id="10" class="logo-red-bar"></div>
+                </div>
+                <div data-id="11" class="logo-financial">FINANCIAL</div>
+            </a>
+            <!-- Desktop Nav -->
+            <nav data-id="12" class="hidden md:flex items-center gap-8" id="desktop-nav-e5f6">
+                <a data-id="13" class="nav-link" data-scroll="home">Home</a>
+                <a data-id="14" class="nav-link" data-scroll="services">Services</a>
+                <a data-id="15" class="nav-link" data-scroll="books">Books</a>
+                <a data-id="16" class="nav-link" data-scroll="mission">Mission</a>
+                <a data-id="17" class="nav-link" data-scroll="contact">Contact</a>
+            </nav>
+            <!-- Mobile Hamburger -->
+            <button data-id="18" class="md:hidden p-2" id="mobile-menu-btn-g7h8" aria-label="Open menu">
+                <i data-id="19" data-lucide="menu" class="w-6 h-6" style="color:#0a0a0a;"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <nav data-id="20" class="mobile-menu" id="mobile-menu-i9j0">
+        <div data-id="21" class="flex justify-between items-center mb-8">
+            <div data-id="22">
+                <div data-id="23" class="logo-bar-top"></div>
+                <div data-id="24" class="logo-text-ash">ASH</div>
+                <div data-id="25" class="logo-red-bars">
+                    <div data-id="26" class="logo-red-bar"></div>
+                    <div data-id="27" class="logo-red-bar"></div>
+                </div>
+                <div data-id="28" class="logo-financial">FINANCIAL</div>
+            </div>
+            <button data-id="29" class="p-2" id="mobile-menu-close-k1l2" aria-label="Close menu">
+                <i data-id="30" data-lucide="x" class="w-6 h-6" style="color:#0a0a0a;"></i>
+            </button>
+        </div>
+        <a data-id="31" class="nav-link" data-scroll="home">Home</a>
+        <a data-id="32" class="nav-link" data-scroll="services">Services</a>
+        <a data-id="33" class="nav-link" data-scroll="books">Books</a>
+        <a data-id="34" class="nav-link" data-scroll="mission">Mission</a>
+        <a data-id="35" class="nav-link" data-scroll="contact">Contact</a>
+    </nav>
+
+    <main data-id="36">
+        <!-- HERO SECTION -->
+        <section data-id="37" class="hero-section" id="home">
+            <div data-id="38" class="hero-content px-5" id="hero-content-m3n4">
+                <p data-id="39" class="section-label" style="color:#C8102E; letter-spacing:4px; margin-bottom:24px;">WEALTH &nbsp;·&nbsp; STRATEGY &nbsp;·&nbsp; FREEDOM</p>
+                <h1 data-id="40" class="font-heading font-bold text-white leading-tight mb-4" style="font-size:clamp(32px,6vw,58px);">
+                    Building Wealth.<br data-id="41"/>Creating Legacy.
+                </h1>
+                <div data-id="42" style="width:60px;height:3px;background:#C8102E;margin:0 auto 28px;"></div>
+                <p data-id="43" class="font-body max-w-xl mx-auto" style="font-size:clamp(15px,2.5vw,18px);color:#aaaaaa;line-height:1.7;">
+                    ASH Financial provides expert financial guidance to help individuals and families achieve lasting financial freedom.
+                </p>
+                <div data-id="44" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:40px;">
+                    <a data-id="45" class="btn-red" href="javascript:void(0)" id="hero-explore-btn">Explore Services</a>
+                    <a data-id="46" class="btn-outline" href="javascript:void(0)" id="hero-learn-btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION SECTION -->
+        <section data-id="47" id="mission" class="fade-section" style="background:#fff;padding:80px 0;">
+            <div data-id="48" class="max-w-6xl mx-auto px-5 md:px-8">
+                <div data-id="49" class="flex flex-col md:flex-row gap-12 md:gap-16">
+                    <!-- Left 60% -->
+                    <div data-id="50" class="md:w-3/5" id="mission-left-s9t0">
+                        <p data-id="51" class="section-label">OUR MISSION</p>
+                        <blockquote data-id="52" class="font-heading font-bold text-lg md:text-2xl leading-snug mb-6" style="border-left:4px solid #C8102E;padding-left:20px;color:#0a0a0a;font-size:clamp(18px,3vw,26px);">
+                            "We are committed to empowering our clients with the knowledge, tools, and strategies needed to build a secure and lasting financial future."
+                        </blockquote>
+                        <p data-id="53" class="font-body" style="font-size:15px;color:#555;line-height:1.75;">
+                            Anthony Hill, MS holds a Master's degree in Accountancy and brings over 8 years of experience in the financial industry. At ASH Financial, we believe financial freedom is not a privilege — it is a goal within reach for everyone willing to commit to the journey. We guide our clients every step of the way.
+                        </p>
+                    </div>
+                    <!-- Right 40% -->
+                    <div data-id="54" class="md:w-2/5 flex flex-col gap-6" id="mission-right-u1v2">
+                        <div data-id="55" class="value-card">
+                            <div data-id="56" class="value-card-bar"></div>
+                            <h4 data-id="57" class="font-heading font-bold" style="font-size:15px;margin-bottom:6px;color:#0a0a0a;">Integrity</h4>
+                            <p data-id="58" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">We operate with full transparency and always put our clients' best interests first.</p>
+                        </div>
+                        <div data-id="59" class="value-card">
+                            <div data-id="60" class="value-card-bar"></div>
+                            <h4 data-id="61" class="font-heading font-bold" style="font-size:15px;margin-bottom:6px;color:#0a0a0a;">Education</h4>
+                            <p data-id="62" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">An informed client is an empowered client. We teach, not just advise.</p>
+                        </div>
+                        <div data-id="63" class="value-card">
+                            <div data-id="64" class="value-card-bar"></div>
+                            <h4 data-id="65" class="font-heading font-bold" style="font-size:15px;margin-bottom:6px;color:#0a0a0a;">Excellence</h4>
+                            <p data-id="66" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">We deliver exceptional results in everything we do, every single time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section data-id="67" id="services" class="fade-section" style="background:#f5f5f5;padding:80px 0;">
+            <div data-id="68" class="max-w-6xl mx-auto px-5 md:px-8">
+                <div data-id="69" class="text-center mb-12" id="services-header-w3x4">
+                    <p data-id="70" class="section-label">OUR SERVICES</p>
+                    <h2 data-id="71" class="font-heading font-bold" style="font-size:clamp(24px,4vw,34px);color:#0a0a0a;">Comprehensive Financial Solutions</h2>
+                </div>
+                <div data-id="72" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="services-grid-y5z6">
+                    <div data-id="73" class="service-card">
+                        <div data-id="74" class="mb-3"><i data-id="75" data-lucide="target" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="76" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Financial Planning</h3>
+                        <p data-id="77" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">Comprehensive strategies tailored to your unique financial goals and life situation.</p>
+                    </div>
+                    <div data-id="78" class="service-card">
+                        <div data-id="79" class="mb-3"><i data-id="80" data-lucide="shield" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="81" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Retirement Planning</h3>
+                        <p data-id="82" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">Secure your future with structured retirement strategies built around your timeline.</p>
+                    </div>
+                    <div data-id="83" class="service-card">
+                        <div data-id="84" class="mb-3"><i data-id="85" data-lucide="calculator" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="86" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Tax Strategy</h3>
+                        <p data-id="87" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">Strategic tax planning to minimize your liability and maximize what you keep.</p>
+                    </div>
+                    <div data-id="88" class="service-card">
+                        <div data-id="89" class="mb-3"><i data-id="90" data-lucide="file-check" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="91" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Tax Prep</h3>
+                        <p data-id="92" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">Accurate and timely tax preparation keeping you compliant and stress-free every season.</p>
+                    </div>
+                    <div data-id="93" class="service-card">
+                        <div data-id="94" class="mb-3"><i data-id="95" data-lucide="bar-chart-3" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="96" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Financial Analyst</h3>
+                        <p data-id="97" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">In-depth financial analysis to help you make smarter, data-driven money decisions.</p>
+                    </div>
+                    <div data-id="98" class="service-card">
+                        <div data-id="99" class="mb-3"><i data-id="100" data-lucide="book-open" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="101" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Bookkeeping</h3>
+                        <p data-id="102" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">Organized, accurate bookkeeping so your finances stay clean, current, and clear.</p>
+                    </div>
+                    <div data-id="103" class="service-card">
+                        <div data-id="104" class="mb-3"><i data-id="105" data-lucide="gem" class="w-7 h-7" style="color:#C8102E;"></i></div>
+                        <h3 data-id="106" class="font-heading font-bold mb-2" style="font-size:15px;color:#0a0a0a;">Wealth Building</h3>
+                        <p data-id="107" class="font-body" style="font-size:13px;color:#666;line-height:1.6;">Build generational wealth through proven strategies that create lasting impact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOOKS SECTION -->
+        <section data-id="108" id="books" class="fade-section" style="background:#0a0a0a;padding:80px 0;">
+            <div data-id="109" class="max-w-5xl mx-auto px-5 md:px-8">
+                <div data-id="110" class="text-center mb-14" id="books-header-a7b8">
+                    <p data-id="111" class="section-label">OUR BOOKS</p>
+                    <h2 data-id="112" class="font-heading font-bold text-white" style="font-size:clamp(22px,4vw,34px);">Knowledge is the Foundation of Financial Freedom</h2>
+                    <p data-id="113" style="font-family:'Montserrat',sans-serif;font-size:18px;font-style:italic;color:#c9a84c;margin-top:12px;margin-bottom:0;">Turning Complexity into Simplicity</p>
+                </div>
+                <div data-id="114" class="books-grid" id="books-grid-c9d0">
+                    <!-- BOOK 1 -->
+                    <div data-id="115" class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div data-id="116" class="book-cover mx-auto sm:mx-0" style="background:linear-gradient(160deg,#1a1200 0%,#3d2b00 40%,#0a0a0a 100%);border:1px solid #c9a84c;box-shadow:8px 8px 28px rgba(0,0,0,0.7);">
+                            <div data-id="117" style="font-size:7px;letter-spacing:1.5px;color:#c9a84c;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;">A COMPLETE FINANCIAL PLAYBOOK</div>
+                            <div data-id="118">
+                                <div data-id="119" style="font-family:'Montserrat',sans-serif;font-size:17px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;">THE MONEY BLUEPRINT</div>
+                                <div data-id="120" style="font-size:8px;color:#c9a84c;font-family:'Inter',sans-serif;margin-bottom:2px;">The Essential Guide to</div>
+                                <div data-id="121" style="font-size:10px;color:#c9a84c;font-family:'Montserrat',sans-serif;font-weight:700;">Taxes, Investing &amp; Trading</div>
+                            </div>
+                            <div data-id="122" style="font-size:8px;color:#aaa;font-family:'Inter',sans-serif;letter-spacing:0.5px;">ANTHONY HILL, MS</div>
+                        </div>
+                        <div data-id="123" class="text-center sm:text-left flex-1">
+                            <h3 data-id="124" class="font-heading font-bold text-white mb-1" style="font-size:17px;">The Money Blueprint</h3>
+                            <p data-id="125" style="font-size:12px;color:#c9a84c;margin-bottom:10px;">The Essential Guide to Taxes, Investing &amp; Trading</p>
+                            <p data-id="126" class="font-body mb-3" style="font-size:13px;color:#999;line-height:1.65;">A complete financial playbook covering taxes, investing, and trading — turning complexity into simplicity and knowledge into wealth.</p>
+                            <p data-id="127" class="mb-5" style="font-size:12px;color:#777;">By Anthony Hill, MS · Accountant · Financial Analyst · Tax Strategist</p>
+                            <a data-id="128" href="https://www.amazon.com/gp/product/B0GYK6L3P7" target="_blank" rel="noopener noreferrer" class="btn-red" style="font-size:12px;padding:11px 24px;">Get Your Copy</a>
+                        </div>
+                    </div>
+
+                    <!-- BOOK 2 -->
+                    <div data-id="129" class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div data-id="130" class="book-cover mx-auto sm:mx-0" style="background:linear-gradient(160deg,#3d0000 0%,#C8102E 50%,#0a0a0a 100%);border:1px solid #c9a84c;box-shadow:8px 8px 28px rgba(0,0,0,0.7);">
+                            <div data-id="131" style="font-size:7px;letter-spacing:1px;color:rgba(255,255,255,0.6);text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;">THE MONEY BLUEPRINT SERIES · BOOK 2</div>
+                            <div data-id="132">
+                                <div data-id="133" style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;">THE MONEY BLUEPRINT</div>
+                                <div data-id="134" style="font-size:11px;color:#c9a84c;font-family:'Montserrat',sans-serif;font-weight:700;">ADVANCED TRADING MASTERY</div>
+                            </div>
+                            <div data-id="135" style="font-size:8px;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;letter-spacing:0.5px;">ANTHONY HILL, MS</div>
+                        </div>
+                        <div data-id="136" class="text-center sm:text-left flex-1">
+                            <h3 data-id="137" class="font-heading font-bold text-white mb-1" style="font-size:17px;">The Money Blueprint: Advanced Trading Mastery</h3>
+                            <p data-id="138" style="font-size:12px;color:#c9a84c;margin-bottom:10px;">The Money Blueprint Series · Book 2</p>
+                            <p data-id="139" class="font-body mb-3" style="font-size:13px;color:#999;line-height:1.65;">Master advanced trading strategies and achieve financial mastery — turning complexity into simplicity and knowledge into wealth.</p>
+                            <p data-id="140" class="mb-5" style="font-size:12px;color:#777;">By Anthony Hill, MS · Accountant · Financial Analyst · Tax Strategist</p>
+                            <a data-id="141" href="https://www.amazon.com/dp/B0HJQ62RYF" target="_blank" rel="noopener noreferrer" class="btn-red" style="font-size:12px;padding:11px 24px;">Get Your Copy</a>
+                        </div>
+                    </div>
+
+                    <!-- BOOK 3 — Coming Soon -->
+                    <div data-id="142" class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div data-id="143" class="book-cover mx-auto sm:mx-0" style="background:linear-gradient(160deg,#001a00 0%,#003d00 40%,#0a0a0a 100%);border:1px solid #c9a84c;box-shadow:8px 8px 28px rgba(0,0,0,0.7);">
+                            <div data-id="144" style="font-size:7px;letter-spacing:1px;color:rgba(255,255,255,0.6);text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;">THE MONEY BLUEPRINT SERIES • BOOK 3</div>
+                            <div data-id="145">
+                                <div data-id="146" style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;">THE MONEY BLUEPRINT</div>
+                                <div data-id="147" style="font-size:11px;color:#c9a84c;font-family:'Montserrat',sans-serif;font-weight:700;">INVESTING MASTERY</div>
+                            </div>
+                            <div data-id="148" style="font-size:8px;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;letter-spacing:0.5px;">ANTHONY HILL, MS</div>
+                        </div>
+                        <div data-id="149" class="text-center sm:text-left flex-1">
+                            <h3 data-id="150" class="font-heading font-bold text-white mb-1" style="font-size:17px;">The Money Blueprint: Investing Mastery</h3>
+                            <p data-id="151" style="font-size:12px;color:#c9a84c;margin-bottom:10px;">The Money Blueprint Series · Book 3</p>
+                            <p data-id="152" class="font-body mb-3" style="font-size:13px;color:#999;line-height:1.65;">A deep dive into the world of investing — learn how to build, grow, and protect your wealth through smart, strategic investment decisions.</p>
+                            <p data-id="153" class="mb-5" style="font-size:12px;color:#777;">By Anthony Hill, MS · Accountant · Financial Analyst · Tax Strategist</p>
+                            <span data-id="154" class="badge-coming-soon">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- BOOK 4 — Coming Soon -->
+                    <div data-id="155" class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div data-id="156" class="book-cover mx-auto sm:mx-0" style="background:linear-gradient(160deg,#000033 0%,#00004d 40%,#0a0a0a 100%);border:1px solid #c9a84c;box-shadow:8px 8px 28px rgba(0,0,0,0.7);">
+                            <div data-id="157" style="font-size:7px;letter-spacing:1px;color:rgba(255,255,255,0.6);text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;">THE MONEY BLUEPRINT SERIES • BOOK 4</div>
+                            <div data-id="158">
+                                <div data-id="159" style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;">THE MONEY BLUEPRINT</div>
+                                <div data-id="160" style="font-size:11px;color:#c9a84c;font-family:'Montserrat',sans-serif;font-weight:700;">TAX MASTERY</div>
+                            </div>
+                            <div data-id="161" style="font-size:8px;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;letter-spacing:0.5px;">ANTHONY HILL, MS</div>
+                        </div>
+                        <div data-id="162" class="text-center sm:text-left flex-1">
+                            <h3 data-id="163" class="font-heading font-bold text-white mb-1" style="font-size:17px;">The Money Blueprint: Tax Mastery</h3>
+                            <p data-id="164" style="font-size:12px;color:#c9a84c;margin-bottom:10px;">The Money Blueprint Series · Book 4 · Final Edition</p>
+                            <p data-id="165" class="font-body mb-3" style="font-size:13px;color:#999;line-height:1.65;">The ultimate guide to mastering taxes — learn advanced tax strategies to minimize liability, maximize returns, and achieve true financial freedom.</p>
+                            <p data-id="166" class="mb-5" style="font-size:12px;color:#777;">By Anthony Hill, MS · Accountant · Financial Analyst · Tax Strategist</p>
+                            <span data-id="167" class="badge-coming-soon">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section data-id="168" id="contact" class="fade-section">
+            <div data-id="169" class="contact-inner">
+                <div data-id="170" class="contact-left">
+                    <div data-id="171" class="section-label" style="color:rgba(255,255,255,0.6);">GET IN TOUCH</div>
+                    <h2 data-id="172">Ready to Take Control of Your Financial Future?</h2>
+                    <p data-id="173">Schedule a consultation with ASH Financial today. Fill out the form and Anthony will reach out to you personally.</p>
+                    <div data-id="174" class="contact-info">
+                        <div data-id="175" class="contact-info-item">
+                            <span data-id="176" class="contact-info-label">Email</span>
+                            <a data-id="177" href="mailto:contact@ash-financial.com?subject=Financial%20Consultation%20Inquiry">contact@ash-financial.com</a>
+                        </div>
+                        <div data-id="178" class="contact-info-item">
+                            <span data-id="179" class="contact-info-label">Phone</span>
+                            <a data-id="180" href="tel:+19013195085">901-319-5085</a>
+                        </div>
+                        <div data-id="181" class="contact-info-item">
+                            <span data-id="182" class="contact-info-label">Address</span>
+                            <span data-id="183">Ash Financial<br data-id="183a">80 Monroe Ave Ste 405<br data-id="183b">Memphis, TN 38103</span>
+                        </div>
+                    </div>
+                </div>
+                <div data-id="184" class="contact-right">
+                    <form data-id="185" id="contactForm">
+                        <div data-id="186" class="form-row">
+                            <div data-id="187" class="form-group">
+                                <label data-id="188">Full Name *</label>
+                                <input data-id="189" type="text" id="fname" placeholder="John Smith" required />
+                            </div>
+                            <div data-id="190" class="form-group">
+                                <label data-id="191">Phone Number *</label>
+                                <input data-id="192" type="tel" id="fphone" placeholder="901-555-0000" required />
+                            </div>
+                        </div>
+                        <div data-id="193" class="form-group">
+                            <label data-id="194">Email Address *</label>
+                            <input data-id="195" type="email" id="femail" placeholder="john@email.com" required />
+                        </div>
+                        <div data-id="196" class="form-group">
+                            <label data-id="197">How can we help you?</label>
+                            <select data-id="198" id="fservice">
+                                <option data-id="199" value="">Select a service...</option>
+                                <option data-id="200">Financial Planning</option>
+                                <option data-id="201">Retirement Planning</option>
+                                <option data-id="202">Tax Strategy</option>
+                                <option data-id="203">Tax Prep</option>
+                                <option data-id="204">Financial Analysis</option>
+                                <option data-id="205">Bookkeeping</option>
+                                <option data-id="206">Wealth Building</option>
+                                <option data-id="207">Other</option>
+                            </select>
+                        </div>
+                        <div data-id="208" class="form-group">
+                            <label data-id="209">Message</label>
+                            <textarea data-id="210" id="fmessage" rows="4" placeholder="Tell us a little about your financial goals..."></textarea>
+                        </div>
+                        <button data-id="211" type="submit" class="form-submit" id="form-submit-btn">Send Message</button>
+                        <div data-id="212" id="formSuccess" style="display:none;margin-top:16px;color:#fff;font-size:13px;background:rgba(255,255,255,0.15);padding:12px 16px;border-radius:2px;">✅ Your message has been sent! Anthony will be in touch with you shortly.</div>
+                        <div id="formError" style="display:none;margin-top:16px;color:#fff;font-size:13px;background:rgba(200,16,46,0.35);padding:12px 16px;border-radius:2px;"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer data-id="213" style="background:#0a0a0a;padding:50px 40px 30px;" id="footer-i5j6">
+        <div data-id="214" class="max-w-6xl mx-auto">
+            <div data-id="215" class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
+                <!-- LEFT -->
+                <div data-id="216">
+                    <div data-id="217" class="mb-4">
+                        <div data-id="218" style="width:36px;height:3px;background:#fff;margin-bottom:2px;"></div>
+                        <div data-id="219" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;letter-spacing:4px;color:#fff;line-height:1;">ASH</div>
+                        <div data-id="220" style="display:flex;justify-content:space-between;width:36px;margin-top:1px;">
+                            <div data-id="221" style="width:12px;height:2px;background:#C8102E;"></div>
+                            <div data-id="222" style="width:12px;height:2px;background:#C8102E;"></div>
+                        </div>
+                        <div data-id="223" style="font-family:'Montserrat',sans-serif;font-size:8px;font-weight:600;letter-spacing:3px;color:#fff;margin-top:1px;">FINANCIAL</div>
+                    </div>
+                    <p data-id="224" style="font-size:13px;color:#666;line-height:1.6;">Building Wealth. Creating Legacy.</p>
+                </div>
+                <!-- CENTER -->
+                <div data-id="225">
+                    <p data-id="226" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C8102E;margin-bottom:14px;">Quick Links</p>
+                    <a data-id="227" class="footer-link" href="javascript:void(0)" id="footer-link-home">Home</a>
+                    <a data-id="228" class="footer-link" href="javascript:void(0)" id="footer-link-services">Services</a>
+                    <a data-id="229" class="footer-link" href="javascript:void(0)" id="footer-link-books">Books</a>
+                    <a data-id="230" class="footer-link" href="javascript:void(0)" id="footer-link-mission">Mission</a>
+                    <a data-id="231" class="footer-link" href="javascript:void(0)" id="footer-link-contact">Contact</a>
+                </div>
+                <!-- RIGHT -->
+                <div data-id="232">
+                    <p data-id="233" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C8102E;margin-bottom:14px;">Contact</p>
+                    <p data-id="234" style="font-size:13px;color:#ccc;line-height:1.8;">
+                        <a data-id="235" id="footer-email-1" href="mailto:contact@ash-financial.com?subject=Financial%20Consultation%20Inquiry" style="color:#888;text-decoration:none;transition:color 0.2s;">contact@ash-financial.com</a><br data-id="236">
+                        <a data-id="237" id="footer-phone" href="tel:+19013195085" style="color:#888;text-decoration:none;transition:color 0.2s;">901-319-5085</a><br data-id="238">
+                        <span data-id="239" style="color:#888;">Ash Financial<br data-id="239a">80 Monroe Ave Ste 405<br data-id="239b">Memphis, TN 38103</span>
+                    </p>
+                </div>
+            </div>
+            <div data-id="240" style="border-top:1px solid #222;padding-top:20px;text-align:center;">
+                <p data-id="241" style="font-size:12px;color:#555;">© 2026 ASH Financial. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      // Guard Lucide
+      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+        lucide.createIcons();
+      }
+
+      // === STICKY NAV SHADOW ===
+      const navbar = document.getElementById('navbar-a1b2');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // === SMOOTH SCROLL for all [data-scroll] elements ===
+      document.querySelectorAll('[data-scroll]').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = el.getAttribute('data-scroll');
+          var target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          // Close mobile menu if open
+          var mobileMenu = document.getElementById('mobile-menu-i9j0');
+          if (mobileMenu.classList.contains('open')) {
+            mobileMenu.classList.remove('open');
+          }
+        });
+      });
+
+      // === HERO BUTTONS (scrollIntoView for iframe compatibility) ===
+      document.getElementById('hero-explore-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      document.getElementById('hero-learn-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('mission').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // === FOOTER QUICK LINKS (scrollIntoView for iframe compatibility) ===
+      document.getElementById('footer-link-home').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+      });
+      document.getElementById('footer-link-services').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+      });
+      document.getElementById('footer-link-books').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('books').scrollIntoView({ behavior: 'smooth' });
+      });
+      document.getElementById('footer-link-mission').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('mission').scrollIntoView({ behavior: 'smooth' });
+      });
+      document.getElementById('footer-link-contact').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // === MOBILE MENU ===
+      var mobileMenuBtn = document.getElementById('mobile-menu-btn-g7h8');
+      var mobileMenu = document.getElementById('mobile-menu-i9j0');
+      var mobileMenuClose = document.getElementById('mobile-menu-close-k1l2');
+
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.add('open');
+      });
+
+      mobileMenuClose.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+      });
+
+      // === INTERSECTION OBSERVER: FADE IN SECTIONS ===
+      var fadeSections = document.querySelectorAll('.fade-section');
+      var observerOptions = {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      };
+
+      var sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry, index) {
+          if (entry.isIntersecting) {
+            // Stagger animation
+            setTimeout(function() {
+              entry.target.classList.add('visible');
+            }, index * 150);
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      fadeSections.forEach(function(section) {
+        sectionObserver.observe(section);
+      });
+
+      // === FOOTER EMAIL & PHONE HOVER ===
+      var footerEmail1 = document.getElementById('footer-email-1');
+      var footerPhone = document.getElementById('footer-phone');
+
+      if (footerEmail1) {
+        footerEmail1.addEventListener('mouseover', function() { this.style.color = '#C8102E'; });
+        footerEmail1.addEventListener('mouseout', function() { this.style.color = '#888'; });
+      }
+      if (footerPhone) {
+        footerPhone.addEventListener('mouseover', function() { this.style.color = '#C8102E'; });
+        footerPhone.addEventListener('mouseout', function() { this.style.color = '#888'; });
+      }
+
+      // === CONTACT FORM SUBMISSION ===
+      function submitForm(e) {
+        e.preventDefault();
+        var btn = document.getElementById('form-submit-btn');
+        var okBox = document.getElementById('formSuccess');
+        var errBox = document.getElementById('formError');
+        var name = document.getElementById('fname').value;
+        var phone = document.getElementById('fphone').value;
+        var email = document.getElementById('femail').value;
+        var service = document.getElementById('fservice').value;
+        var message = document.getElementById('fmessage').value;
+
+        errBox.style.display = 'none';
+        okBox.style.display = 'none';
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        fetch('https://formsubmit.co/ajax/contact@ash-financial.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: 'New Consultation Request from ' + name,
+            _template: 'table',
+            _captcha: 'false',
+            Name: name,
+            Phone: phone,
+            Email: email,
+            Service: service || 'Not specified',
+            Message: message || '(no message)'
+          })
+        })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+        .then(function (res) {
+          if (!res.ok || res.data.success === 'false' || res.data.success === false) {
+            throw new Error(res.data.message || 'Send failed');
+          }
+          okBox.style.display = 'block';
+          document.getElementById('contactForm').reset();
+        })
+        .catch(function () {
+          errBox.innerHTML = '⚠️ Something went wrong sending your message. Please email us directly at <a href="mailto:contact@ash-financial.com?subject=Financial%20Consultation%20Inquiry" style="color:#fff;text-decoration:underline;">contact@ash-financial.com</a> or call us.';
+          errBox.style.display = 'block';
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send Message';
+        });
+      }
+
+      document.getElementById('contactForm').addEventListener('submit', submitForm);
+    </script>
+</body>
+</html>

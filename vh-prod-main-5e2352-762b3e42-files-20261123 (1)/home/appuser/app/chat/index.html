@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Ash AI Assistant — ASH Financial</title>
+<meta name="description" content="Chat with Ash, the ASH Financial AI assistant — financial guidance, any time." />
+<link rel="manifest" href="./manifest.json" />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+<link rel="icon" href="./favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Ash AI" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --brand:#C8102E; --brand-dark:#a00d24;
+    --ink:#0a0a0a; --surface:#121212;
+    --line:rgba(255,255,255,.07);
+    --muted:#8b8b8b; --light:#f5f5f5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body {
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    color:#fff;
+    background:
+      radial-gradient(1100px 520px at 50% -12%, rgba(200,16,46,.18), transparent 68%),
+      var(--ink);
+    display:flex; flex-direction:column;
+    height:100vh; height:100dvh; overflow:hidden;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+
+  /* centred app column — the whole thing reads as one object, not stacked boxes */
+  .app {
+    width:100%; max-width:940px; margin:0 auto;
+    flex:1 1 auto; min-height:0;
+    display:flex; flex-direction:column;
+    padding:0 18px 18px;
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:calc(18px + env(safe-area-inset-bottom));
+  }
+
+  header {
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:13px;
+    padding:16px 4px 14px;
+  }
+  /* transparent brand logo — no plate, no border, no box */
+  .mark {
+    height:34px; width:auto; max-width:132px;
+    object-fit:contain; display:block;
+    background:none; border:0; border-radius:0;
+    flex:0 0 auto;
+  }
+  .id { min-width:0; flex:1 1 auto; }
+  .id h1 {
+    font-family:'Montserrat',sans-serif; font-size:15.5px; font-weight:700;
+    letter-spacing:.2px; line-height:1.2;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .id p {
+    display:flex; align-items:center; gap:7px;
+    font-size:12px; color:var(--muted); letter-spacing:.1px; margin-top:4px;
+  }
+  .dot { width:6px; height:6px; border-radius:50%; background:#22c55e; flex:0 0 auto; animation:pulse 2.6s infinite; }
+  @keyframes pulse {
+    0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}
+    70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}
+    100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+  }
+
+  .actions { display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+  /* soft pills — no outlined rectangles anywhere */
+  .btn {
+    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600;
+    letter-spacing:.1px; text-transform:none; text-decoration:none;
+    padding:9px 17px; border:0; border-radius:999px;
+    color:#fff; background:rgba(255,255,255,.07);
+    cursor:pointer; white-space:nowrap;
+    transition:background .2s ease, transform .15s ease, box-shadow .2s ease;
+  }
+  .btn:hover { background:rgba(255,255,255,.12); }
+  .btn:active { transform:translateY(1px); }
+  .btn-primary { background:var(--brand); box-shadow:0 6px 18px rgba(200,16,46,.35); }
+  .btn-primary:hover { background:var(--brand-dark); }
+  @media (display-mode: standalone) { .btn-site { display:none; } }
+  @media (max-width:600px) { .btn-site { display:none; } }
+
+  /* the chat itself: one clean floating panel */
+  .stage {
+    flex:1 1 auto; min-height:0; position:relative;
+    background:#fff;
+    border-radius:20px; overflow:hidden;
+    box-shadow:0 26px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06);
+    isolation:isolate;
+  }
+  iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+
+  #loader {
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:15px;
+    background:#fff; color:#8a8a8a; font-size:13px; letter-spacing:.2px;
+    transition:opacity .4s ease; z-index:2;
+  }
+  #loader.hide { opacity:0; pointer-events:none; }
+  .spin {
+    width:28px; height:28px;
+    border:2px solid rgba(0,0,0,.08); border-top-color:var(--brand);
+    border-radius:50%; animation:spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* install hint — floating pill card, no hard border */
+  #iosHint {
+    position:fixed; left:14px; right:14px;
+    bottom:calc(14px + env(safe-area-inset-bottom));
+    max-width:460px; margin:0 auto;
+    background:rgba(24,24,24,.96);
+    -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+    border-radius:16px; padding:15px 17px;
+    display:flex; align-items:center; gap:12px; z-index:10;
+    box-shadow:0 18px 50px rgba(0,0,0,.6), 0 0 0 1px var(--line);
+    animation:rise .4s ease both;
+  }
+  @keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  #iosHint p { font-size:13.5px; line-height:1.5; color:#d8d8d8; flex:1 1 auto; }
+  #iosHint strong { color:#fff; font-weight:600; }
+  #iosHint button {
+    flex:0 0 auto; background:rgba(255,255,255,.07); border:0; border-radius:50%;
+    width:28px; height:28px; color:var(--muted); font-size:17px; line-height:1;
+    cursor:pointer; transition:background .2s ease;
+  }
+  #iosHint button:hover { background:rgba(255,255,255,.14); color:#fff; }
+
+  @media (max-width:640px) {
+    .app { padding:0 10px 10px; padding-bottom:calc(10px + env(safe-area-inset-bottom)); }
+    header { padding:14px 6px 12px; }
+    .mark { height:30px; }
+    .stage { border-radius:16px; box-shadow:0 14px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06); }
+  }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <img class="mark" src="./logo.png" alt="ASH Financial" />
+      <div class="id">
+        <h1>Ash AI Assistant</h1>
+        <p><span class="dot"></span> Online · ASH Financial</p>
+      </div>
+      <div class="actions">
+        <button id="installBtn" class="btn btn-primary" type="button" hidden>Install</button>
+        <a class="btn btn-site" href="/">Website</a>
+      </div>
+    </header>
+
+    <main class="stage">
+      <div id="loader"><div class="spin"></div><span>Starting Ash…</span></div>
+      <iframe id="chatFrame" title="Ash AI Assistant" allow="microphone;" src="https://copilotstudio.microsoft.com/environments/e7efbfde-51ed-e3f5-93d9-56ca968a800f/bots/cr8f7_ashai_pWNnCq/webchat?__version__=2&amp;enableFileAttachment=false&amp;cliAgent=true&amp;v=20261013"></iframe>
+    </main>
+  </div>
+
+  <div id="iosHint" hidden>
+    <p>Install Ash: tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.</p>
+    <button type="button" id="iosHintClose" aria-label="Dismiss">&times;</button>
+  </div>
+
+  <script>
+    (function () {
+      var loader = document.getElementById('loader');
+      var frame  = document.getElementById('chatFrame');
+      function hideLoader() { loader.classList.add('hide'); }
+      frame.addEventListener('load', hideLoader);
+      setTimeout(hideLoader, 15000);
+
+      // Install prompt (Chrome / Edge / Android)
+      var deferred = null;
+      var installBtn = document.getElementById('installBtn');
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault(); deferred = e; installBtn.hidden = false;
+      });
+      installBtn.addEventListener('click', function () {
+        if (!deferred) return;
+        installBtn.hidden = true;
+        deferred.prompt();
+        deferred.userChoice.then(function () { deferred = null; }, function () { deferred = null; });
+      });
+      window.addEventListener('appinstalled', function () {
+        installBtn.hidden = true; deferred = null;
+      });
+
+      // iOS has no install prompt — show the Share -> Add to Home Screen hint once.
+      var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var hint = document.getElementById('iosHint');
+      if (isIOS && !standalone) {
+        try { if (!localStorage.getItem('ashAiHintSeen')) hint.hidden = false; } catch (err) { hint.hidden = false; }
+      }
+      document.getElementById('iosHintClose').addEventListener('click', function () {
+        hint.hidden = true;
+        try { localStorage.setItem('ashAiHintSeen', '1'); } catch (err) {}
+      });
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js').catch(function () {});
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
